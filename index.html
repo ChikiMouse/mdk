@@ -1,12 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Автозапуск звука</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автовоспроизведение звука</title>
+    <style>
+        /* Стиль кнопки, похожий на Chrome, но крупнее */
+        #playButton {
+            background-color: #4CAF50; /* Зелёный цвет, как в Chrome */
+            border: none;
+            color: white;
+            padding: 20px 40px; /* Увеличил размер кнопки */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px; /* Увеличил размер текста */
+            font-family: 'Roboto', sans-serif;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            position: absolute; /* Позиционирование */
+            top: 20px; /* Отступ сверху */
+            left: 20px; /* Отступ слева */
+        }
+
+        #playButton:hover {
+            background-color: #45a049; /* Темнее при наведении */
+        }
+
+        #playButton:active {
+            background-color: #3d8b40; /* Ещё темнее при нажатии */
+        }
+
+        /* Сброс отступов у body */
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
-    <audio autoplay controls>
-        <source src="per.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает воспроизведение аудио.
-    </audio>
+
+    <!-- Кнопка для воспроизведения звука -->
+    <button id="playButton">Назад</button>
+
+    <!-- Аудио элемент -->
+    <audio id="audio" src="per.mp3"></audio>
+
+    <script>
+        // Получаем элементы кнопки и аудио
+        const playButton = document.getElementById('playButton');
+        const audio = document.getElementById('audio');
+
+        // Добавляем обработчик события для кнопки
+        playButton.addEventListener('click', () => {
+            // Воспроизводим звук
+            audio.play().then(() => {
+                console.log('Звук воспроизводится');
+            }).catch(error => {
+                console.error('Ошибка воспроизведения звука:', error);
+            });
+        });
+    </script>
+
 </body>
 </html>
